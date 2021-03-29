@@ -1,3 +1,45 @@
+body{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
 #root {
-  color: red;
+  border: solid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #F6F6F6;
+}
+#root div{
+  border-radius: 10px;
+  flex-basis: 24%;
+  color: rgb(75, 75, 75);
+  font-size: 1.2rem;
+  margin: 1rem 0rem 1rem 0rem;
+  background-color:#FFFFFF ;
+  margin-right: 2rem;
+  box-shadow: -2px 1px 10px #cccccc ;
+}
+/* #root div:nth-child(3n+1){
+  border: solid red;
+  margin-right: 2rem;
+
+}
+#root div:nth-child(3n+0){
+  border: solid red;
+  margin-left: 2rem;
+
+} */
+#root div h3{
+  text-align: center;
+  padding: 0.8rem;
+}
+
+#root div img{
+  display: block;
+  margin: auto;
+}
+
+#root div p{
+  padding: 1.2rem;
 }
