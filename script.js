@@ -1,12 +1,30 @@
 //You can edit ALL of the code here
 function setup() {
+
   const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
-}
+
+  document.getElementById("total-episodes").textContent = allEpisodes.length;
+   makePageForEpisodes(allEpisodes)
+
+  document.getElementById("text").addEventListener("input", function(e){
+    e.preventDefault()
+    let inputValue = document.getElementById("text").value;
+    let input = inputValue.toLowerCase();
+    let results = allEpisodes.filter(element => {
+    if (element.name.toLowerCase().match(input) || element.summary.toLowerCase().match(input)) {
+      return element;
+    }
+    })
+   makePageForEpisodes(results)
+  })
+
+  }
 
 function makePageForEpisodes(episodeList) {
+
   let rootElem = document.getElementById("root");
-  // loop through all the episodes 
+  rootElem.innerHTML = " ";
+
   episodeList.forEach(element => { 
     let episodeGrouping = document.createElement("div")
     let header = document.createElement("h3");
@@ -33,6 +51,8 @@ function makePageForEpisodes(episodeList) {
 
     rootElem.appendChild(episodeGrouping)
   });
+  document.getElementById("search-results").textContent = episodeList.length;
 }
+
 
 window.onload = setup;
