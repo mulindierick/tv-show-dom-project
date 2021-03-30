@@ -36,7 +36,7 @@ body{
 .search{
   display: flex;
   flex-wrap: wrap;
-  margin: 2rem 0rem 0rem 9rem;
+  margin: 2% 0% 0% 9%;
 }
 input{
   border: none;
