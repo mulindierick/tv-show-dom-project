@@ -38,12 +38,13 @@ body{
   flex-wrap: wrap;
   margin: 2% 0% 0% 9%;
 }
-input{
+input, select{
   border: none;
   outline: none;
   padding: 1rem;
   border-radius: 10px;
   margin-right: 2rem;
+  flex-basis: 20%;
 }
 input:focus{
   border: none;

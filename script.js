@@ -1,10 +1,33 @@
 //You can edit ALL of the code here
 function setup() {
 
+  // retrieve all episodes
   const allEpisodes = getAllEpisodes();
 
+  // display opisodes
+  makePageForEpisodes(allEpisodes)
+
+  // display select options for the episodes
+  addOptions(allEpisodes)
+
+    // display selected episode
+  document.getElementById("select").addEventListener("change", function(e){
+    e.preventDefault();
+
+    let selectedEpisode = document.getElementById("select").value;
+    let input = selectedEpisode.slice(9, selectedEpisode.length);
+    console.log(input)
+    let displayEpisode = allEpisodes.filter(element =>{
+      if (element.name.includes(input)) {
+        return element;
+      }
+    })
+  makePageForEpisodes(displayEpisode)
+  })
+
+
+  // search opisodes
   document.getElementById("total-episodes").textContent = allEpisodes.length;
-   makePageForEpisodes(allEpisodes)
 
   document.getElementById("text").addEventListener("input", function(e){
     e.preventDefault()
@@ -15,11 +38,13 @@ function setup() {
       return element;
     }
     })
-   makePageForEpisodes(results)
+    makePageForEpisodes(results)
   })
 
-  }
+}
 
+
+  // make page for episodes
 function makePageForEpisodes(episodeList) {
 
   let rootElem = document.getElementById("root");
@@ -54,5 +79,21 @@ function makePageForEpisodes(episodeList) {
   document.getElementById("search-results").textContent = episodeList.length;
 }
 
+// make options to select opisodes
+function addOptions(listOfAllEpisodes) {
+  let select = document.getElementById("select")
+  listOfAllEpisodes.forEach(element => {
+    let option = document.createElement("option");
+    if (element.number < 10) {
+      let optionContent = document.createTextNode(`S0${element.season}E0${element.number} - ${element.name}`);
+      option.appendChild(optionContent)
+      select.appendChild(option)
+    }else{
+      let optionContent = document.createTextNode(`S0${element.season}E${element.number} - ${element.name}`);
+      option.appendChild(optionContent)
+      select.appendChild(option)
+    }
+  })
+}
 
 window.onload = setup;
