@@ -1,23 +1,9 @@
 //You can edit ALL of the code here
 
 function setup() {
-  // get tv show cast
-
-  // fetch(`http://api.tvmaze.com/shows/1?embed=cast`)
-  //   .then((response) => {
-  //     if (response.status >= 200 && response.status <= 299) {
-  //       return response.json();
-  //     } else {
-  //       throw new Error(
-  //         `error message: ${response.status} ${response.statusText}`
-  //       );
-  //     }
-  //   })
-  //   .then((allCast) => getAllCastFromApi(allCast))
-  //   .catch((error) => console.log(error));
-
   // get all tv shows
-  fetch(`http://api.tvmaze.com/shows`)
+  fetch(`https://api.tvmaze.com/shows
+  `)
     .then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         return response.json();
@@ -318,11 +304,11 @@ function makePageForTvShows(tvShows) {
   rootElem.innerHTML = " ";
 
   for (let i = 0; i < tvShows.length; i++) {
-    console.log(tvShows.length)
+    console.log(tvShows.length);
     // get cast for tv show from api
     // get tv show Id
     let tvShowId = tvShows[i].id;
-    fetch(`http://api.tvmaze.com/shows/${tvShowId}?embed=cast`)
+    fetch(`https://api.tvmaze.com/shows/${tvShowId}?embed=cast`)
       .then((response) => {
         if (response.status >= 200 && response.status <= 299) {
           return response.json();
@@ -337,22 +323,22 @@ function makePageForTvShows(tvShows) {
 
     // add cast for tv show to tv shows
     function getAllCastFromApi(allCast) {
-        let castImage1 = allCast._embedded.cast[0].person.image.medium;
-        let castImage2 = allCast._embedded.cast[1].person.image.medium;
-        let castImage3 = allCast._embedded.cast[2].person.image.medium;
-        let castImage4 = allCast._embedded.cast[3].person.image.medium;
-        document.getElementsByClassName("cast1")[
-          i
-        ].style.backgroundImage = `url("${castImage1}")`;
-        document.getElementsByClassName("cast2")[
-          i
-        ].style.backgroundImage = `url("${castImage2}")`;
-        document.getElementsByClassName("cast3")[
-          i
-        ].style.backgroundImage = `url("${castImage3}")`;
-        document.getElementsByClassName("cast4")[
-          i
-        ].style.backgroundImage = `url("${castImage4}")`;
+      let castImage1 = allCast._embedded.cast[0].person.image.medium;
+      let castImage2 = allCast._embedded.cast[1].person.image.medium;
+      let castImage3 = allCast._embedded.cast[2].person.image.medium;
+      let castImage4 = allCast._embedded.cast[3].person.image.medium;
+      document.getElementsByClassName("cast1")[
+        i
+      ].style.backgroundImage = `url("${castImage1}")`;
+      document.getElementsByClassName("cast2")[
+        i
+      ].style.backgroundImage = `url("${castImage2}")`;
+      document.getElementsByClassName("cast3")[
+        i
+      ].style.backgroundImage = `url("${castImage3}")`;
+      document.getElementsByClassName("cast4")[
+        i
+      ].style.backgroundImage = `url("${castImage4}")`;
       // }
     }
 
@@ -370,7 +356,9 @@ function makePageForTvShows(tvShows) {
       let removeHtml = tvShows[i].summary;
       let htmlRemoved = removeHtml.replace(/<\/?[^>]+(>|$)/g, "");
       let episodeName = document.createTextNode(`${tvShows[i].name}`);
-      let episodeSummaryText = document.createTextNode(`${htmlRemoved.substr(0, 200)}`);
+      let episodeSummaryText = document.createTextNode(
+        `${htmlRemoved.substr(0, 200)}...`
+      );
 
       // rating html
       let ratingHeader = document.createElement("h3");
