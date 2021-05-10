@@ -1,4 +1,3 @@
-
 // get allEpisodes from the api
 function getAllEpisodes(allEpisodes) {
   makePageForEpisodes(allEpisodes); // make page for all episodes
@@ -77,6 +76,57 @@ function SearchTvShowBySelectOptionsOnTheEpisodesPage(
   };
 }
 
+//  show on the shows page
+function findShowEpisodes(i, allShows, getAllEpisodes) {
+  return function () {
+    let selectedValue = document.getElementsByClassName("tv-show")[i]
+      .textContent;
+    document.getElementById("select-show").value = selectedValue;
+    let selectedTvShow = allShows.filter((element) => {
+      if (element.name === selectedValue) {
+        return element;
+      }
+    });
+
+    // retrieve all episodes for the clicked tv show on tv show home page
+    fetch(`https://api.tvmaze.com/shows/${selectedTvShow[0].id}/episodes`)
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 299) {
+          return response.json();
+        } else {
+          throw new Error(
+            `error message: ${response.status} ${response.statusText}`
+          );
+        }
+      })
+      .then((allEpisodes) => getAllEpisodes(allEpisodes))
+      .catch((error) => console.log(error));
+    hideDom();
+  };
+}
+
+function GetTheEpisodesOfTheSearchedTvShow(i, displayTvShow, getAllEpisodes) {
+  return function () {
+    let selectedValue = document.getElementsByClassName("tv-show")[i]
+      .textContent;
+    document.getElementById("select-show").value = selectedValue;
+
+    fetch(`https://api.tvmaze.com/shows/${displayTvShow[i].id}/episodes`)
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 299) {
+          return response.json();
+        } else {
+          throw new Error(
+            `error message: ${response.status} ${response.statusText}`
+          );
+        }
+      })
+      .then((allEpisodes) => getAllEpisodes(allEpisodes))
+      .catch((error) => console.log(error));
+    hideDom();
+  };
+}
+
 function SearchTvShowBySearchInput(allShows, getAllEpisodes) {
   return function (e) {
     e.preventDefault();
@@ -99,19 +149,23 @@ function SearchTvShowBySearchInput(allShows, getAllEpisodes) {
         .getElementsByClassName("tv-show-group")
         [i].addEventListener(
           "click",
-          GetTheEpisodesOfTheSelectedTvShow(i, displayTvShow, getAllEpisodes)
+          GetTheEpisodesOfTheSearchedTvShow(i, displayTvShow, getAllEpisodes)
         );
     }
   };
 }
 
-function GetTheEpisodesOfTheSelectedTvShow(i, displayTvShow, getAllEpisodes) {
+function getTheEpisodesOfTheSelectedTvShowOnTvShowPage(
+  i,
+  displayTvShow,
+  getAllEpisodes
+) {
   return function () {
     let selectedValue = document.getElementsByClassName("tv-show")[i]
       .textContent;
     document.getElementById("select-show").value = selectedValue;
 
-    fetch(`https://api.tvmaze.com/shows/${displayTvShow[0].id}/episodes`)
+    fetch(`https://api.tvmaze.com/shows/${displayTvShow[i].id}/episodes`)
       .then((response) => {
         if (response.status >= 200 && response.status <= 299) {
           return response.json();
@@ -127,53 +181,31 @@ function GetTheEpisodesOfTheSelectedTvShow(i, displayTvShow, getAllEpisodes) {
   };
 }
 
-function getTheEpisodesOfTheSelectedTv(i, displayTvShow, getAllEpisodes) {
-  return function () {
-    let selectedValue = document.getElementsByClassName("tv-show")[i]
-      .textContent;
-    document.getElementById("select-show").value = selectedValue;
+function searchTvShowBySelectOnTvShowPage(allShows, getAllEpisodes) {
+  return function (e) {
+    e.preventDefault();
 
-    fetch(`https://api.tvmaze.com/shows/${displayTvShow[0].id}/episodes`)
-      .then((response) => {
-        if (response.status >= 200 && response.status <= 299) {
-          return response.json();
-        } else {
-          throw new Error(
-            `error message: ${response.status} ${response.statusText}`
-          );
-        }
-      })
-      .then((allEpisodes) => getAllEpisodes(allEpisodes))
-      .catch((error) => console.log(error));
-    hideDom();
-  };
-}
-
-function findShowEpisodes(i, allShows, getAllEpisodes) {
-  return function () {
-    let selectedValue = document.getElementsByClassName("tv-show")[i]
-      .textContent;
-    document.getElementById("select-show").value = selectedValue;
-    let selectedTvShow = allShows.filter((element) => {
-      if (element.name === selectedValue) {
+    let selectedTvShow = document.getElementById("select-show-on-show-page")
+      .value;
+    let displayTvShow = allShows.filter((element) => {
+      if (element.name.includes(selectedTvShow)) {
         return element;
       }
     });
 
-    // retrieve all episodes for the clicked tv show
-    fetch(`https://api.tvmaze.com/shows/${selectedTvShow[0].id}/episodes`)
-      .then((response) => {
-        if (response.status >= 200 && response.status <= 299) {
-          return response.json();
-        } else {
-          throw new Error(
-            `error message: ${response.status} ${response.statusText}`
-          );
-        }
-      })
-      .then((allEpisodes) => getAllEpisodes(allEpisodes))
-      .catch((error) => console.log(error));
-    hideDom();
+    // get the episodes of the selected tv show
+    makePageForTvShows(displayTvShow);
+    for (let i = 0; i < displayTvShow.length; i++) {
+      document
+        .getElementsByClassName("tv-show-group")
+        [i].addEventListener(
+          "click",
+          getTheEpisodesOfTheSelectedTvShowOnTvShowPage(
+            i,
+            displayTvShow,
+            getAllEpisodes
+          )
+        );
+    }
   };
 }
-

@@ -41,7 +41,7 @@ function getAllShowsFromApi(allShows) {
       searchTvShowBySelectOnTvShowPage(allShows, getAllEpisodes)
     );
 
-  // search tv shows by search input tv shows page page
+  // search tv shows by search input on tv shows page page
   document
     .getElementById("search-shows")
     .addEventListener(
@@ -57,29 +57,3 @@ function getAllShowsFromApi(allShows) {
       SearchTvShowBySelectOptionsOnTheEpisodesPage(allShows, getAllEpisodes)
     );
 }
-
-function searchTvShowBySelectOnTvShowPage(allShows, getAllEpisodes) {
-  return function (e) {
-    e.preventDefault();
-
-    let selectedTvShow = document.getElementById("select-show-on-show-page")
-      .value;
-    let displayTvShow = allShows.filter((element) => {
-      if (element.name.includes(selectedTvShow)) {
-        return element;
-      }
-    });
-
-    // get the episodes of the selected tv show
-    makePageForTvShows(displayTvShow);
-    for (let i = 0; i < displayTvShow.length; i++) {
-      document
-        .getElementsByClassName("tv-show-group")
-        [i].addEventListener(
-          "click",
-          getTheEpisodesOfTheSelectedTv(i, displayTvShow, getAllEpisodes)
-        );
-    }
-  };
-}
-
