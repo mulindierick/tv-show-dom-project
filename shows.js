@@ -57,3 +57,8 @@ function getAllShowsFromApi(allShows) {
       SearchTvShowBySelectOptionsOnTheEpisodesPage(allShows, getAllEpisodes)
     );
 }
+
+// reload page
+document.getElementById("show-page").addEventListener("click", function () {
+  window.parent.location = window.parent.location.href;
+}); 
