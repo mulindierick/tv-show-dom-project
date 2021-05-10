@@ -5,11 +5,14 @@ function addScriptToDOM() {
   script2.src = "script.js";
   let script3 = document.createElement("script");
   script3.src = "dom-pages.js";
-  
+
   document.getElementById("body").appendChild(script3);
   document.getElementById("body").appendChild(script1);
   document.getElementById("body").appendChild(script2);
- 
-  
+
+  // refresh page on click to go back to the tv shows list
+  document.getElementById("show-page").addEventListener("click", function () {
+    window.parent.location = window.parent.location.href;
+  });
 }
 window.onload = addScriptToDOM;

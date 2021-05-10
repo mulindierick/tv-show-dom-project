@@ -274,7 +274,3 @@ function addOptions(listOfAllEpisodes) {
   });
 }
 
-// refresh page on click to go back to the tv shows list
-document.getElementById("show-page").addEventListener("click", function () {
-  window.parent.location = window.parent.location.href;
-});
