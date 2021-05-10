@@ -5,10 +5,11 @@ function addScriptToDOM() {
   script2.src = "script.js";
   let script3 = document.createElement("script");
   script3.src = "dom-pages.js";
-
+  
+  document.getElementById("body").appendChild(script3);
   document.getElementById("body").appendChild(script1);
   document.getElementById("body").appendChild(script2);
-  document.getElementById("body").appendChild(script3);
+ 
   
 }
 window.onload = addScriptToDOM;
