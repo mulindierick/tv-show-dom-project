@@ -32,7 +32,7 @@ header #nav-tvshow-home {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 1%;
+  padding: 1rem;
 }
 .search p,
 .search p span,
@@ -57,7 +57,7 @@ header #nav-tvshow-home {
 
 #root div h3 {
   text-align: center;
-  padding: 4%;
+  padding: 0.8rem;
 }
 
 #root div img {
@@ -66,7 +66,7 @@ header #nav-tvshow-home {
 }
 
 #root div p {
-  padding: 3%;
+  padding: 1rem;
 }
 
 input,
@@ -75,9 +75,9 @@ select,
 #home, #data-source  {
   border: none;
   outline: none;
-  padding: 1%;
+  padding: 1rem;
   border-radius: 10px;
-  margin: 0.5%;
+  margin: 0.5rem;
 }
 #show-page,
 #home {
@@ -111,27 +111,30 @@ input:focus {
   flex-direction: column;
   border-radius: 10px;
   flex-basis: 28%;
-  padding: 1%;
+  padding: 1rem;
   box-shadow: -2px 1px 10px #cccccc;
   background-color: #ffffff;
-  margin: 0.5%;
+  margin: 0.5rem;
 }
 #tv-shows div:hover{
 cursor: pointer;
 background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(61,135,203,1) 100%);
 }
 #tv-shows div h3 {
-  margin: 2%;
+  margin-bottom: 0.8rem;
   text-align: center;
   font-size: 2rem;
 }
 #tv-shows div img {
-  margin-bottom: 0.8%;
+  margin-bottom: 0.8rem;
+}
+#tv-shows p{
+  margin-bottom: 0.8rem;
 }
 
 #tv-shows div section {
-  margin-top: 0.8%;
-  padding: 0.5%;
+  margin-top: 0.8rem;
+  padding: 0.5rem;
   display: flex;
   align-self: stretch;
   flex-direction: column;
@@ -143,7 +146,7 @@ background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(61,135,203,1) 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 0.5%;
+  margin-top: 0.5rem;
 }
 #tv-shows div ul li {
   flex-basis: 20%;
@@ -164,7 +167,7 @@ background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(61,135,203,1) 
   color: #ffffff;
   background-color: #163654;
   border-radius: 10px;
-  padding: 1%;
+  padding: 1rem;
   z-index: 1;
   display: none;
   transition: 360ms ease;
@@ -173,5 +176,11 @@ background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(61,135,203,1) 
 @media screen and (max-width: 1024px) {
   #tv-shows div {
     flex-grow: 1;
+  }
+  #root div{
+    flex-grow: 1;
+  }
+  #root{
+    padding: 1rem
   }
 }
