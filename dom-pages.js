@@ -3,6 +3,7 @@ function hideDom() {
   document.getElementById("search").style.display = "flex";
   document.getElementById("tv-shows").style.display = "none";
   document.getElementById("search-shows").style.display = "none";
+  document.getElementById("nav-tvshow-home").style.display = "none";
   document.getElementById("select-show-on-show-page").style.display = "none";
 }
 
@@ -65,10 +66,7 @@ function makePageForTvShows(tvShows) {
       let removeHtml = tvShows[i].summary;
       let htmlRemoved = removeHtml.replace(/<\/?[^>]+(>|$)/g, "");
       let episodeName = document.createTextNode(`${tvShows[i].name}`);
-      let episodeSummaryText = document.createTextNode(
-        `${htmlRemoved.substr(0, 200)}...`
-      );
-
+    
       // rating html
       let ratingHeader = document.createElement("h3");
       let rp = document.createElement("p");
@@ -77,12 +75,6 @@ function makePageForTvShows(tvShows) {
       let rtp = document.createElement("p");
 
       let ratingHeaderContent = document.createTextNode("Ratings:");
-      let rated = document.createTextNode(
-        `Rated: ${tvShows[i].rating.average}`
-      );
-      let genres = document.createTextNode(`Genres: ${tvShows[i].genres}`);
-      let status = document.createTextNode(`Status: ${tvShows[i].status}`);
-      let runTime = document.createTextNode(`Run time: ${tvShows[i].runtime}`);
 
       // cast html
       let castHeader = document.createElement("h3");
@@ -105,11 +97,12 @@ function makePageForTvShows(tvShows) {
       castGrouping.appendChild(cast3);
       castGrouping.appendChild(cast4);
 
-      ratingHeader.appendChild(ratingHeaderContent);
-      rp.appendChild(rated);
-      gp.appendChild(genres);
-      sp.appendChild(status);
-      rtp.appendChild(runTime);
+      // ratings
+      ratingHeader.textContent = "Ratings:"
+      rp.textContent = `Rated: ${tvShows[i].rating.average}`
+      gp.textContent = `Genres: ${tvShows[i].genres}`
+      sp.textContent = `Status: ${tvShows[i].status}`
+      rtp.textContent = `Run time: ${tvShows[i].runtime}`
 
       statsGrouping.appendChild(rp);
       statsGrouping.appendChild(gp);
@@ -117,7 +110,7 @@ function makePageForTvShows(tvShows) {
       statsGrouping.appendChild(rtp);
 
       header.appendChild(episodeName);
-      summaryText.appendChild(episodeSummaryText);
+      summaryText.innerHTML = `${htmlRemoved.substr(0, 200)} <span id="read-more">more...</span>`
 
       episodeGrouping.appendChild(header);
       episodeGrouping.appendChild(mediumImage);
@@ -131,6 +124,7 @@ function makePageForTvShows(tvShows) {
     }
   }
   document.getElementById("search-results").textContent = tvShows.length;
+  document.getElementById("search-results-tv").textContent = tvShows.length;
 }
 
 // make page for episodes
@@ -150,12 +144,13 @@ function makePageForEpisodes(episodeList) {
       let episodeName = document.createTextNode(`${element.name}`);
       let SeasonNumber = document.createTextNode(` - S0${element.season}`);
       let episodeNumber = document.createTextNode(`E0${element.number}`);
-      let episodeSummaryText = document.createTextNode(`${htmlRemoved}`);
+      // let episodeSummaryText = document.createTextNode(`${htmlRemoved}`);
 
       header.appendChild(episodeName);
       header.appendChild(SeasonNumber);
       header.appendChild(episodeNumber);
-      summaryText.appendChild(episodeSummaryText);
+      summaryText.innerHTML = `${htmlRemoved.substr(0, 200)} <span id="read-more">more...</span>`
+      // summaryText.appendChild(episodeSummaryText);
 
       episodeGrouping.appendChild(header);
       episodeGrouping.appendChild(mediumImage);
@@ -176,12 +171,13 @@ function makePageForEpisodes(episodeList) {
       let episodeName = document.createTextNode(`${element.name}`);
       let SeasonNumber = document.createTextNode(` - S0${element.season}`);
       let episodeNumber = document.createTextNode(`E0${element.number}`);
-      let episodeSummaryText = document.createTextNode(`${htmlRemoved}`);
+      // let episodeSummaryText = document.createTextNode(`${htmlRemoved}`);
 
       header.appendChild(episodeName);
       header.appendChild(SeasonNumber);
       header.appendChild(episodeNumber);
-      summaryText.appendChild(episodeSummaryText);
+      summaryText.innerHTML = `${htmlRemoved.substr(0, 200)} <span id="read-more">more...</span>`
+      // summaryText.appendChild(episodeSummaryText);
 
       episodeGrouping.appendChild(header);
       episodeGrouping.appendChild(mediumImage);
@@ -201,12 +197,13 @@ function makePageForEpisodes(episodeList) {
       let episodeName = document.createTextNode(`${element.name}`);
       let SeasonNumber = document.createTextNode(` - S0${element.season}`);
       let episodeNumber = document.createTextNode(`E0${element.number}`);
-      let episodeSummaryText = document.createTextNode(`${htmlRemoved}`);
+      // let episodeSummaryText = document.createTextNode(`${htmlRemoved}`);
 
       header.appendChild(episodeName);
       header.appendChild(SeasonNumber);
       header.appendChild(episodeNumber);
-      summaryText.appendChild(episodeSummaryText);
+      // summaryText.appendChild(episodeSummaryText);
+      summaryText.innerHTML = `${htmlRemoved.substr(0, 200)} <span id="read-more">more...</span>`
 
       episodeGrouping.appendChild(header);
       episodeGrouping.appendChild(mediumImage);
@@ -273,4 +270,3 @@ function addOptions(listOfAllEpisodes) {
     }
   });
 }
-

@@ -79,8 +79,8 @@ function SearchTvShowBySelectOptionsOnTheEpisodesPage(
 //  show on the shows page
 function findShowEpisodes(i, allShows, getAllEpisodes) {
   return function () {
-    let selectedValue = document.getElementsByClassName("tv-show")[i]
-      .textContent;
+    let selectedValue =
+      document.getElementsByClassName("tv-show")[i].textContent;
     document.getElementById("select-show").value = selectedValue;
     let selectedTvShow = allShows.filter((element) => {
       if (element.name === selectedValue) {
@@ -107,8 +107,8 @@ function findShowEpisodes(i, allShows, getAllEpisodes) {
 
 function GetTheEpisodesOfTheSearchedTvShow(i, displayTvShow, getAllEpisodes) {
   return function () {
-    let selectedValue = document.getElementsByClassName("tv-show")[i]
-      .textContent;
+    let selectedValue =
+      document.getElementsByClassName("tv-show")[i].textContent;
     document.getElementById("select-show").value = selectedValue;
 
     fetch(`https://api.tvmaze.com/shows/${displayTvShow[i].id}/episodes`)
@@ -161,8 +161,8 @@ function getTheEpisodesOfTheSelectedTvShowOnTvShowPage(
   getAllEpisodes
 ) {
   return function () {
-    let selectedValue = document.getElementsByClassName("tv-show")[i]
-      .textContent;
+    let selectedValue =
+      document.getElementsByClassName("tv-show")[i].textContent;
     document.getElementById("select-show").value = selectedValue;
 
     fetch(`https://api.tvmaze.com/shows/${displayTvShow[i].id}/episodes`)
@@ -185,8 +185,9 @@ function searchTvShowBySelectOnTvShowPage(allShows, getAllEpisodes) {
   return function (e) {
     e.preventDefault();
 
-    let selectedTvShow = document.getElementById("select-show-on-show-page")
-      .value;
+    let selectedTvShow = document.getElementById(
+      "select-show-on-show-page"
+    ).value;
     let displayTvShow = allShows.filter((element) => {
       if (element.name.includes(selectedTvShow)) {
         return element;

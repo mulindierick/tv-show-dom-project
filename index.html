@@ -9,42 +9,75 @@
   </head>
 
   <body id="body">
-    <p id="show-page">tv-shows page</p>
-    <select name="select-show-on-show-page" id="select-show-on-show-page">
-      <option value="" selected>Select Show</option>
-    </select>
-    <input
-      class="text"
-      type="text"
-      id="search-shows"
-      name="text"
-      placeholder="search-shows"
-    />
+    <header class="">
+      <div id="nav-tvshow-home">
+        <p id="home">All tv-shows</p>
+       
+        <select name="select-show-on-show-page" id="select-show-on-show-page">
+          <option value="" selected>Select a tv-show</option>
+        </select>
+        <input
+          class="text"
+          type="text"
+          id="search-shows"
+          name="text"
+          placeholder="search-shows"
+        />
+        <p>
+          Displaying: <span id="search-results-tv">0</span> of
+          <span id="total-tv-shows">0</span> TV shows
+        </p>
+        <p id="data-source"> <a href="https://www.tvmaze.com/" target="_blank" class="">Data Source: TV Maze</a></p>
+      </div>
+
+      <div class="search" id="search">
+        <p id="show-page">All tv-shows</p>
+        <select name="select-show" id="select-show">
+          <option value="" selected>Select A Show</option>
+        </select>
+        <select name="select" id="select">
+          <option value="" selected>All Episodes</option>
+        </select>
+        <input
+          class="text"
+          type="text"
+          id="text"
+          name="text"
+          placeholder="search episodes"
+        />
+        <p>
+          Displaying: <span id="search-results">0</span> of
+          <span id="total-episodes">0</span> episodes
+        </p>
+      </div>
+    </header>
+
     <div id="tv-shows"></div>
-    <div class="search" id="search">
-      <select name="select-show" id="select-show">
-        <option value="" selected>Select Show</option>
-      </select>
-      <select name="select" id="select">
-        <option value="" selected>All Episodes</option>
-      </select>
-      <input
-        class="text"
-        type="text"
-        id="text"
-        name="text"
-        placeholder="search episodes"
-      />
-      <p>
-        Displaying: <span id="search-results">0</span> of
-        <span id="total-episodes">0</span> episodes
-      </p>
+
+    <div id="card">
+      I love this bird When tensions in Chester's Mill continue to rise as
+      resources dwindle, Big Jim holds a census in order to forecast how long
+      the town can continue to exist under the dire conditions. Meanwhile, a
+      rainstorm brings much-needed water until it changes to acid rain,
+      threatening the lives of everyone it touches. Also, Rebecca and Lyle butt
+      heads over the reasons for the dome's existence. I love this bird When
+      tensions in Chester's Mill continue to rise as resources dwindle, Big Jim
+      holds a census in order to forecast how long the town can continue to
+      exist under the dire conditions. Meanwhile, a rainstorm brings much-needed
+      water until it changes to acid rain, threatening the lives of everyone it
+      touches. Also, Rebecca and Lyle butt heads over the reasons for the dome's
+      existence. I love this bird When tensions in Chester's Mill continue to
+      rise as resources dwindle, Big Jim holds a census in order to forecast how
+      long the town can continue to exist under the dire conditions. Meanwhile,
+      a rainstorm brings much-needed water until it changes to acid rain,
+      threatening the lives of everyone it touches. Also, Rebecca and Lyle butt
+      heads over the reasons for the dome's existence.
     </div>
 
     <div id="root"></div>
     <script src="shows.js"></script>
     <script src="dom-pages.js"></script>
     <script src="script.js"></script>
-    <!-- <script src="show-cast-tv-shows.js"></script> -->
+    <script src="show-cast-tv-shows.js"></script>
   </body>
 </html>
